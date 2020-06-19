@@ -1,25 +1,25 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/lib/integration/react';
+import { store, persistor} from './src/store';
+import styled from 'styled-components';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+const Div = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;
 
+const Texto = styled.Text``;
 
-function App () {
-  return(
-
+function App () {   /** PersistGate salva as informações em um AsyncStorage */
+  return(  
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}> 
+          
+      </PersistGate>
+    </Provider>
+      
   );
 }
 

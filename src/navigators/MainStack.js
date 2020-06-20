@@ -10,7 +10,15 @@ export default () => {      /**
                                 Dentro do Navigator fica as Screen
                              */
     return (    
-        <MainStack.Navigator>
+        <MainStack.Navigator screenOptions={{
+            headerTitleAlign: 'center',
+            
+            headerStyle: {
+                backgroundColor: '#000',
+            },
+
+            headerTintColor: '#fff',
+        }}>
             <MainStack.Screen name="List" component={ListScreen}/>
             <MainStack.Screen name="EditNote" component={EditNoteScreen}/>
         </MainStack.Navigator>

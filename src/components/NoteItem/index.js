@@ -6,7 +6,7 @@ import {
 
 export default ({ data, index, onPress }) => {
     return (
-        <Box>
+        <Box onPress={() => onPress(index)}>
             <Title> {data.title} </Title>
         </Box>
     );

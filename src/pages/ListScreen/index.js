@@ -7,6 +7,9 @@ import {
     Btn,
     AddButton,
     NotesList,
+    NoNotes,
+    NoNotesImage,
+    NoNotesText
 } from './style';
 
 import { useNavigation, useRoute } from '@react-navigation/native';     /** Importando Navigation */
@@ -25,7 +28,8 @@ export default () => {
      */
 
     const list = useSelector(state => state.notes.list);        
-               
+    
+
     function Edit () {      /** Função que navega para a tela EditNote */
         navigation.navigate('EditNote');        
     }
@@ -41,24 +45,35 @@ export default () => {
         });
     }, []);                                                         
 
-    function handleNotePress () {
-
+    function handleNotePress (index) {
+        navigation.navigate('EditNote', {
+            key: index
+        });
     }
     
 
     return (
         <Container>
-            <NotesList 
-                data={list}
-                renderItem={({item, index}) => (
-                    <NoteItem
-                        data={item}
-                        index={index}
-                        onPress={handleNotePress}
-                    />
-                )}
-                keyExtractor={(item, index) => index.toString()}
-            />
+            {list.length > 0 &&
+                <NotesList 
+                    data={list}
+                    renderItem={({item, index}) => (
+                        <NoteItem
+                            data={item}
+                            index={index}
+                            onPress={handleNotePress}
+                        />
+                    )}
+                    keyExtractor={(item, index) => index.toString()}
+                />
+            }
+
+            {list.length ==  0 &&
+                <NoNotes>
+                    <NoNotesImage source={require('../../assets/note.png')} />
+                    <NoNotesText> Nenhuma Anotação </NoNotesText>
+                </NoNotes>
+            }
         </Container>
     );
 }

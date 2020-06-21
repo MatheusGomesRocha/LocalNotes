@@ -21,15 +21,13 @@ import NoteItem from '../../components/NoteItem';
 export default () => {
     const navigation = useNavigation();         /** Atribuindo o Navigation a uma const */
 
-    /** Pegando a lista do reducer.
-    - state é a const que foi atribuido as infos no reducer 
-    - notes é a const que foi atribuido os reducers no CombineReducers
-    - list é o nome do array que está sendo armazenado as listas
-     */
-
-    const list = useSelector(state => state.notes.list);        
+    const list = useSelector(state => state.notes.list);     /** Pegando a lista do reducer.
+                                                            - state é a const que foi atribuido as infos no reducer 
+                                                            - notes é a const que foi atribuido os reducers no CombineReducers
+                                                            - list é o nome do array que está sendo armazenado as listas
+                                                            */    
     
-
+                                                           
     function Edit () {      /** Função que navega para a tela EditNote */
         navigation.navigate('EditNote');        
     }
@@ -64,7 +62,7 @@ export default () => {
     return (
         <Container>     
             {list.length > 0 &&
-                <NotesList 
+                <NotesList
                     data={list}
                     renderItem={({item, index}) => (
                         <NoteItem
